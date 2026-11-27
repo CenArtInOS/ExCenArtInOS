@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+
+    <title>Tools</title>
+
+    <link rel="stylesheet" href="./tools.css">
+
+    <script
+        src="./tools.js?v=3"
+        defer
+        onerror="document.getElementById('toolsStatus').textContent='ERROR: tools.js could not be loaded. Check its location and filename.'">
+    </script>
+</head>
+
+<body>
+
+    <main class="tools-app">
+
+        <section class="tools-list" aria-label="Available tools">
+
+            <button class="tool-item" type="button" data-tool="text">
+                <span class="tool-icon">📝</span>
+                <span class="tool-info">
+                    <span class="tool-name">Text</span>
+                    <span class="tool-description">Write and edit text documents</span>
+                </span>
+                <span class="tool-arrow">›</span>
+            </button>
+
+            <button class="tool-item" type="button" data-tool="calculator">
+                <span class="tool-icon">🧮</span>
+                <span class="tool-info">
+                    <span class="tool-name">Calculator</span>
+                    <span class="tool-description">Perform mathematical calculations</span>
+                </span>
+                <span class="tool-arrow">›</span>
+            </button>
+
+            <button class="tool-item" type="button" data-tool="calendar">
+                <span class="tool-icon">📅</span>
+                <span class="tool-info">
+                    <span class="tool-name">Calendar</span>
+                    <span class="tool-description">View dates and months</span>
+                </span>
+                <span class="tool-arrow">›</span>
+            </button>
+
+            <button class="tool-item" type="button" data-tool="alarm">
+                <span class="tool-icon">⏰</span>
+                <span class="tool-info">
+                    <span class="tool-name">Alarm Clock</span>
+                    <span class="tool-description">Set an alarm and manage alerts</span>
+                </span>
+                <span class="tool-arrow">›</span>
+            </button>
+
+            <button class="tool-item" type="button" data-tool="qr">
+                <span class="tool-icon">▦</span>
+                <span class="tool-info">
+                    <span class="tool-name">QR Generator</span>
+                    <span class="tool-description">Create and download QR codes</span>
+                </span>
+                <span class="tool-arrow">›</span>
+            </button>
+
+        </section>
+
+        <p class="tools-status" id="toolsStatus" role="status" aria-live="polite">
+            Loading tools...
+        </p>
+
+    </main>
+
+</body>
+</html>
