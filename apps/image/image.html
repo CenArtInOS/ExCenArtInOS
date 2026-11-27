@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>Image Viewer</title>
+    <link rel="stylesheet" href="image.css">
+</head>
+<body>
+
+    <!-- Top toolbar -->
+    <header class="toolbar">
+        <input type="search" id="imageSearch" placeholder="Search images..." autocomplete="off">
+
+        <button id="folderBtn" title="Add folder">Folder</button>
+        <button id="imageBtn" title="Add images">+ Image</button>
+
+        <input type="file" id="imageInput" accept="image/*" multiple hidden>
+        <input type="file" id="folderInput" accept="image/*" webkitdirectory directory multiple hidden>
+    </header>
+
+    <!-- Image thumbnails -->
+    <section class="thumbnail-strip" id="thumbnailList">
+        <div class="empty-thumbnails">No images</div>
+    </section>
+
+    <!-- Main image viewer -->
+    <main class="viewer">
+        <div class="empty-state" id="emptyState">
+            <span>No image selected</span>
+            <button id="emptyAddBtn">Add Images</button>
+        </div>
+
+        <img id="mainImage" alt="Selected image" draggable="false" hidden>
+
+        <div class="image-info" id="imageInfo" hidden>
+            <span id="imageName"></span>
+        </div>
+    </main>
+
+    
+<!-- Single-line image controls -->
+<section class="control-bar">
+
+    <div class="control-group rotate-group">
+        <input type="range" id="rotateSlider"
+               min="-180" max="180" value="0">
+
+        <input type="number" id="rotateValue"
+               min="-180" max="180" value="0"
+               step="1" aria-label="Rotation degrees">
+        <span>°</span>
+    </div>
+
+    <div class="control-group flip-group">
+        <button id="flipBtn" title="Flip horizontally">↔</button>
+    </div>
+
+    <div class="control-group zoom-group">
+        <button id="zoomOut" title="Zoom out">−</button>
+        <button id="zoomIn" title="Zoom in">+</button>
+
+        <div class="zoom-input-wrap">
+            <input type="number" id="zoomValue"
+                   min="25" max="400" value="100"
+                   step="1" aria-label="Zoom percentage">
+            <span>%</span>
+        </div>
+    </div>
+
+</section>
+
+
+    <script src="image.js"></script>
+</body>
+</html>
