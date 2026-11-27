@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="video.css">
+</head>
+<body>
+
+<main id="video-app">
+
+    <!-- Normal toolbar -->
+    <header class="video-toolbar">
+        <input type="search" id="video-search"
+               placeholder="Search videos..." autocomplete="off">
+
+        <button id="folder-button" type="button">+ Folder</button>
+        <button id="video-button" type="button">+ Video</button>
+
+        <input type="file" id="video-files"
+               accept="video/*,.mkv,.avi,.3gp,.mpeg,.mpg"
+               multiple hidden>
+
+        <input type="file" id="folder-files"
+               accept="video/*,.mkv,.avi,.3gp,.mpeg,.mpg"
+               webkitdirectory multiple hidden>
+    </header>
+
+    <!-- Video library: no heading -->
+    <section class="video-library">
+        <div id="video-list" class="video-list">
+            <div class="empty-library">Select a folder or add videos</div>
+        </div>
+    </section>
+
+    <!-- Video player -->
+    <section class="video-player-area">
+        <div class="video-stage">
+
+            <video id="video-element"
+                   playsinline
+                   preload="metadata"></video>
+
+            <div class="video-placeholder" id="video-placeholder">
+                <span>Video Player</span>
+                <small>Select a video to play</small>
+            </div>
+
+            <div class="video-information" id="video-information">
+                <div id="video-title">No video selected</div>
+                <div id="video-details"></div>
+            </div>
+
+            <!-- Always accessible in landscape mode -->
+            <button id="cinema-exit" class="stage-button"
+                    type="button" title="Exit landscape mode">↩</button>
+
+            <button id="controls-toggle" class="stage-button"
+                    type="button" title="Hide controls">×</button>
+
+        </div>
+    </section>
+
+    <!-- Playback controls -->
+    <section class="video-controls">
+
+        <div class="timeline-row">
+            <span id="current-time">00:00</span>
+
+            <input type="range" id="video-seek"
+                   min="0" max="1000" value="0">
+
+            <span id="total-time">00:00</span>
+        </div>
+
+        <div class="control-row">
+
+            <button id="previous-button"
+                    type="button" title="Previous">|◀</button>
+
+            <button id="play-button"
+                    type="button" title="Play/Pause">▶</button>
+
+            <button id="next-button"
+                    type="button" title="Next">▶|</button>
+
+            <button id="mute-button"
+                    type="button" title="Mute">Mute</button>
+
+            <div class="speed-controls">
+                <button class="speed-button"
+                        data-speed="0.5" type="button">0.5×</button>
+
+                <button class="speed-button active"
+                        data-speed="1" type="button">1×</button>
+
+                <button class="speed-button"
+                        data-speed="2" type="button">2×</button>
+            </div>
+
+            <button id="orientation-toggle"
+                    type="button" title="Landscape mode">⤾</button>
+
+        </div>
+    </section>
+
+</main>
+
+<script src="video.js"></script>
+</body>
+</html>
