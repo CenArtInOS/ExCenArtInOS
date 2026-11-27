@@ -1,0 +1,234 @@
+/* =========================================
+   ExCenArtInOS - Social
+   Minimal dark mini-browser interface
+========================================= */
+
+/* Base layout */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eeeeee;
+    font-family: Arial, sans-serif;
+}
+
+.social-app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: #151515;
+}
+
+/* Top address and action bar */
+.social-header {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 7px;
+    height: 44px;
+    padding: 5px 8px;
+    background: #101010;
+    border-bottom: 1px solid #242424;
+}
+
+.site-address {
+    flex: 1;
+    min-width: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 11px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 7px;
+    background: #1d1d1d;
+    color: #c9c9c9;
+    font-size: 12px;
+}
+
+.header-button {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 7px;
+    background: #1d1d1d;
+    color: #dddddd;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header-button:active {
+    background: #333333;
+}
+
+.header-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Main website display */
+.website-area {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.website-frame-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.social-frame {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #ffffff;
+}
+
+.social-frame.active {
+    display: block;
+}
+
+/* Loading indicator */
+.website-loading {
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: rgba(20, 20, 20, 0.88);
+    color: #eeeeee;
+    font-size: 11px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.website-loading.visible {
+    opacity: 1;
+}
+
+/* Fallback message for websites that block embedding */
+.website-error {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 25px;
+    background: #151515;
+    color: #dddddd;
+    text-align: center;
+}
+
+.website-error.visible {
+    display: flex;
+}
+
+.error-symbol {
+    font-size: 38px;
+    color: #aaaaaa;
+}
+
+.website-error p {
+    max-width: 270px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #bbbbbb;
+}
+
+.website-error button {
+    border: 0;
+    border-radius: 7px;
+    padding: 10px 16px;
+    background: #303030;
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Bottom icon switcher */
+.social-switcher {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    align-items: center;
+    flex-shrink: 0;
+    width: 100%;
+    height: 56px;
+    padding: 4px 3px;
+    gap: 2px;
+    background: #101010;
+    border-top: 1px solid #242424;
+}
+
+.social-icon {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 44px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #888888;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.social-icon.active {
+    color: #ffffff;
+    background: #292929;
+}
+
+.social-icon:active {
+    background: #383838;
+}
+
+/* Compact screens */
+@media (max-width: 380px) {
+    .social-switcher {
+        gap: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .social-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
