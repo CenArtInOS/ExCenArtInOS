@@ -1,0 +1,509 @@
+
+/* =========================================
+   ExCenArtInOS Video Player
+   Minimal dark interface
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eee;
+    font-family: Arial, sans-serif;
+}
+
+/* Main application */
+
+#video-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 44px minmax(0, 40fr) minmax(0, 40fr) minmax(82px, 20fr);
+
+    grid-template-areas:
+        "toolbar"
+        "library"
+        "player"
+        "controls";
+
+    background: #151515;
+}
+
+/* Toolbar */
+
+.video-toolbar {
+    grid-area: toolbar;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 8px;
+    background: #101010;
+    min-width: 0;
+}
+
+.video-toolbar input {
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    padding: 0 9px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    outline: none;
+    background: #202020;
+    color: #eee;
+    font-size: 12px;
+}
+
+button {
+    border: 1px solid #383838;
+    border-radius: 5px;
+    background: #252525;
+    color: #ddd;
+    padding: 6px 9px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    touch-action: manipulation;
+}
+
+button:active {
+    background: #414141;
+}
+
+/* Library */
+
+.video-library {
+    grid-area: library;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #191919;
+    border-bottom: 1px solid #303030;
+}
+
+.video-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.empty-library {
+    padding: 20px 10px;
+    color: #777;
+    font-size: 12px;
+    text-align: center;
+}
+
+.video-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px;
+    min-height: 60px;
+    border-bottom: 1px solid #292929;
+    cursor: pointer;
+}
+
+.video-item:active,
+.video-item.active {
+    background: #303030;
+}
+
+.video-thumbnail,
+.video-thumbnail-placeholder {
+    width: 66px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #292929;
+}
+
+.video-thumbnail {
+    object-fit: cover;
+}
+
+.video-thumbnail-placeholder {
+    display: grid;
+    place-items: center;
+    color: #888;
+    font-size: 18px;
+}
+
+.video-item-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.video-item-title {
+    font-size: 12px;
+    color: #eee;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.video-item-duration {
+    margin-top: 5px;
+    font-size: 10px;
+    color: #888;
+}
+
+/* Player */
+
+.video-player-area {
+    grid-area: player;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #080808;
+}
+
+.video-stage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
+}
+
+#video-element {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+#video-element.is-visible {
+    display: block;
+}
+
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #777;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.video-placeholder small {
+    font-size: 11px;
+    color: #555;
+}
+
+.video-placeholder.hidden {
+    display: none;
+}
+
+/* Filename overlay */
+
+.video-information {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 3;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.68);
+    pointer-events: none;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .45s ease, visibility .45s ease;
+}
+
+.video-information.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#video-title {
+    font-size: 12px;
+    color: #fff;
+    overflow-wrap: anywhere;
+}
+
+#video-details {
+    margin-top: 4px;
+    font-size: 10px;
+    color: #bbb;
+}
+
+/* Playback controls */
+
+.video-controls {
+    grid-area: controls;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 0;
+    padding: 7px 9px;
+    background: #171717;
+    border-top: 1px solid #303030;
+}
+
+.timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: #aaa;
+}
+
+#video-seek {
+    flex: 1;
+    min-width: 0;
+    accent-color: #bbb;
+}
+
+/* Single-line control bar */
+
+.control-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.control-row::-webkit-scrollbar {
+    display: none;
+}
+
+.control-row > button {
+    flex: 0 0 auto;
+    min-width: 34px;
+    min-height: 30px;
+}
+
+.speed-controls {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 4px;
+}
+
+.speed-button {
+    min-width: 39px;
+    padding: 6px 7px;
+    color: #bbb;
+}
+
+.speed-button.active {
+    background: #3a3a3a;
+    border-color: #666;
+    color: #fff;
+}
+
+/* Equal-sized play and landscape buttons */
+
+#play-button,
+#orientation-toggle {
+    min-width: 34px;
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 12px;
+}
+
+/* Landscape stage buttons */
+
+.stage-button {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 12px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background: rgba(35, 35, 35, 0.88);
+    border-color: #555;
+    font-size: 16px;
+}
+
+#cinema-exit {
+    left: 12px;
+}
+
+#controls-toggle {
+    right: 12px;
+}
+
+/* =========================================
+   Cinema / landscape mode
+========================================= */
+
+#video-app.cinema-mode {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Hide toolbar and library */
+
+#video-app.cinema-mode .video-toolbar,
+#video-app.cinema-mode .video-library {
+    display: none;
+}
+
+/* Video fills the entire app window */
+
+#video-app.cinema-mode .video-player-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+#video-app.cinema-mode .video-stage {
+    width: 100%;
+    height: 100%;
+}
+
+/* Controls float over the bottom of the video */
+
+#video-app.cinema-mode .video-controls {
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 76px;
+    padding: 10px 14px;
+    gap: 8px;
+    background: rgba(12, 12, 12, 0.88);
+    border-top: 1px solid rgba(100, 100, 100, 0.35);
+    transition: opacity .2s ease;
+}
+
+/* Keep mode buttons available */
+
+#video-app.cinema-mode .stage-button {
+    display: flex;
+}
+
+/* Hide controls without hiding the two stage buttons */
+
+#video-app.cinema-mode.controls-hidden .video-controls {
+    display: none;
+}
+
+#video-app.cinema-mode.controls-hidden #controls-toggle {
+    background: rgba(35, 35, 35, 0.95);
+}
+
+/* Hide the normal landscape button in cinema mode */
+
+#video-app.cinema-mode #orientation-toggle {
+    display: none;
+}
+
+/* =========================================
+   Natural landscape layout
+========================================= */
+
+@media (orientation: landscape) {
+    #video-app:not(.cinema-mode) {
+        grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+        grid-template-rows: minmax(0, 1fr) 82px;
+
+        grid-template-areas:
+            "library player"
+            "library controls";
+    }
+
+    #video-app:not(.cinema-mode) .video-library {
+        border-right: 1px solid #303030;
+        border-bottom: 0;
+    }
+}
+
+/* Short landscape screens */
+
+@media (max-height: 500px) {
+    .video-controls {
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .control-row {
+        gap: 4px;
+    }
+
+    .control-row > button,
+    .speed-button {
+        min-height: 27px;
+        padding: 4px 6px;
+    }
+
+    .video-item {
+        min-height: 52px;
+    }
+
+    .video-thumbnail,
+    .video-thumbnail-placeholder {
+        width: 55px;
+        height: 37px;
+    }
+
+    #video-app.cinema-mode .video-controls {
+        min-height: 68px;
+        padding: 6px 10px;
+    }
+}
+
+/* Small portrait screens */
+
+@media (max-width: 380px) {
+    .video-toolbar {
+        gap: 4px;
+        padding: 5px;
+    }
+
+    .video-toolbar button {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    .video-controls {
+        padding: 6px;
+    }
+}
