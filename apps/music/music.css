@@ -1,0 +1,768 @@
+
+/* =========================================
+   ExCenArtInOS Music Player
+   Minimal dark responsive layout
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eeeeee;
+    font-family: Arial, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   MAIN SCREEN
+   Toolbar / Library / Current / Seek / Controls
+========================================= */
+
+.music-app {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        minmax(36px, 7fr)
+        minmax(0, 30fr)
+        minmax(0, 40fr)
+        minmax(34px, 8fr)
+        minmax(42px, 15fr);
+
+    gap: 4px;
+
+    padding: 4px 6px;
+
+    overflow: hidden;
+
+    background: #141414;
+}
+
+#audio-player {
+    display: none;
+}
+
+/* =========================================
+   TOP TOOLBAR
+   Search / Folder / Music
+========================================= */
+
+.music-toolbar {
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap: 5px;
+
+    overflow: hidden;
+}
+
+#music-search {
+    width: 100%;
+    min-width: 0;
+    height: 30px;
+
+    padding: 0 9px;
+
+    color: #eeeeee;
+    background: #202020;
+
+    border: 1px solid #303030;
+    border-radius: 3px;
+
+    font-size: 11px;
+
+    outline: none;
+}
+
+#music-search::placeholder {
+    color: #888888;
+}
+
+#music-search:focus {
+    border-color: #666666;
+}
+
+.music-toolbar button {
+    height: 30px;
+
+    padding: 0 9px;
+
+    white-space: nowrap;
+
+    color: #dddddd;
+    background: #292929;
+
+    border: 0;
+    border-radius: 3px;
+
+    font-size: 10px;
+}
+
+.music-toolbar button:active {
+    background: #444444;
+}
+
+/* =========================================
+   MUSIC LIBRARY
+========================================= */
+
+.library-panel {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    padding: 4px 5px;
+
+    background: #181818;
+}
+
+.library-list {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
+
+    padding: 2px 1px;
+}
+
+.library-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.library-list::-webkit-scrollbar-thumb {
+    background: #555555;
+    border-radius: 3px;
+}
+
+/* Individual song */
+
+.track-row {
+    width: 100%;
+
+    min-height: clamp(25px, 5vh, 38px);
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 4px 7px;
+    margin-bottom: 2px;
+
+    color: #cccccc;
+    background: #202020;
+
+    border: 0;
+    border-radius: 2px;
+
+    text-align: left;
+}
+
+.track-row.selected {
+    color: #ffffff;
+    background: #383838;
+}
+
+.track-index {
+    flex: 0 0 18px;
+
+    color: #777777;
+    font-size: 9px;
+
+    text-align: center;
+}
+
+.track-details {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.track-name {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 11px;
+}
+
+.track-singer {
+    max-width: 35%;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: #999999;
+    font-size: 9px;
+}
+
+.track-status {
+    flex: 0 0 auto;
+
+    color: #aaaaaa;
+    font-size: 8px;
+}
+
+/* Empty library and search results */
+
+.empty-state {
+    padding: 12px 5px;
+
+    text-align: center;
+    color: #888888;
+}
+
+.empty-state span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 22px;
+}
+
+.empty-state p {
+    font-size: 11px;
+}
+
+.empty-state small {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 9px;
+}
+
+/* =========================================
+   CURRENT MUSIC SECTION
+   Artwork 40% / Information 60%
+========================================= */
+
+.current-panel {
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        40%
+        minmax(0, 60%);
+
+    align-items: stretch;
+
+    gap: 5px;
+
+    overflow: hidden;
+
+    padding: 5px;
+
+    background: #191919;
+}
+
+/* =========================================
+   ALBUM ARTWORK
+========================================= */
+
+.artwork-area {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #222222;
+
+    border-radius: 3px;
+}
+
+#album-art {
+    display: block;
+
+    width: 90%;
+    height: auto;
+
+    max-height: 90%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    border-radius: 3px;
+}
+
+#artwork-placeholder {
+    color: #777777;
+    font-size: 35px;
+}
+
+/* =========================================
+   TRACK INFORMATION AND SETTINGS
+========================================= */
+
+.track-side {
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    /* More space for track information.
+       Compact equalizer and speed sections. */
+    grid-template-rows:
+        minmax(0, 32fr)
+        minmax(0, 45fr)
+        minmax(0, 23fr);
+
+    gap: 4px;
+
+    overflow: hidden;
+}
+
+/* Current title and artist */
+
+.track-information {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 2px 3px;
+}
+
+#track-title {
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#track-artist {
+    margin-top: 4px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: #999999;
+    font-size: 10px;
+}
+
+/* =========================================
+   EQUALIZER PRESETS
+   No heading or manual sliders
+========================================= */
+
+.equalizer {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 4px 5px;
+
+    background: #222222;
+
+    border-radius: 3px;
+}
+
+.eq-presets {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    align-content: center;
+
+    gap: 3px;
+
+    overflow: hidden;
+}
+
+.eq-presets button {
+    flex: 0 0 auto;
+
+    padding: 4px 5px;
+
+    color: #cccccc;
+    background: #303030;
+
+    border: 0;
+    border-radius: 2px;
+
+    font-size: 8px;
+}
+
+.eq-presets button.active {
+    color: #ffffff;
+    background: #555555;
+}
+
+#eq-status {
+    flex: 0 0 auto;
+
+    margin-top: 3px;
+
+    color: #888888;
+    font-size: 8px;
+}
+
+/* =========================================
+   PLAYBACK SPEED
+========================================= */
+
+.speed-section {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    padding: 3px 5px;
+
+    background: #222222;
+
+    border-radius: 3px;
+}
+
+.speed-buttons {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.speed-buttons button {
+    flex: 1;
+    min-width: 0;
+
+    padding: 5px 2px;
+
+    color: #cccccc;
+    background: #303030;
+
+    border: 0;
+    border-radius: 2px;
+
+    font-size: 9px;
+}
+
+.speed-buttons button.active {
+    color: #ffffff;
+    background: #555555;
+}
+
+/* =========================================
+   SEEK BAR AND TIMING
+========================================= */
+
+.seek-area {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 0 5px;
+
+    overflow: hidden;
+}
+
+#seek-bar {
+    display: block;
+
+    width: 100%;
+    height: 14px;
+
+    margin: 0;
+
+    accent-color: #bbbbbb;
+}
+
+.time-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #999999;
+
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   PLAYBACK CONTROLS
+========================================= */
+
+.playback-controls {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    padding: 3px 4px;
+
+    background: #191919;
+
+    overflow: hidden;
+}
+
+.playback-controls button {
+    flex: 0 0 auto;
+
+    min-width: 27px;
+    height: 30px;
+
+    color: #eeeeee;
+    background: #292929;
+
+    border: 0;
+    border-radius: 3px;
+
+    font-size: 12px;
+}
+
+.playback-controls button.active {
+    background: #505050;
+}
+
+.playback-controls .play-button {
+    min-width: 35px;
+    height: 34px;
+
+    background: #414141;
+
+    font-size: 15px;
+}
+
+/* Volume */
+
+.volume-control {
+    flex: 1;
+
+    min-width: 35px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+#volume-bar {
+    width: 100%;
+    min-width: 0;
+
+    accent-color: #bbbbbb;
+}
+
+/* =========================================
+   TOUCH AND FOCUS
+========================================= */
+
+input[type="range"] {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 1px solid #888888;
+    outline-offset: 2px;
+}
+
+button:active {
+    background-color: #444444;
+}
+
+/* =========================================
+   NARROW PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .music-app {
+        padding-inline: 3px;
+        gap: 3px;
+    }
+
+    .music-toolbar {
+        gap: 3px;
+    }
+
+    #music-search {
+        padding-inline: 6px;
+        font-size: 10px;
+    }
+
+    .music-toolbar button {
+        padding-inline: 6px;
+        font-size: 9px;
+    }
+
+    .current-panel {
+        grid-template-columns: 40% minmax(0, 60%);
+        gap: 3px;
+        padding: 3px;
+    }
+
+    .track-side {
+        gap: 3px;
+    }
+
+    .eq-presets {
+        gap: 2px;
+    }
+
+    .eq-presets button {
+        padding: 3px 4px;
+        font-size: 7px;
+    }
+
+    .speed-buttons {
+        gap: 3px;
+    }
+
+    .speed-buttons button {
+        font-size: 8px;
+    }
+
+    .playback-controls {
+        gap: 3px;
+        padding-inline: 2px;
+    }
+
+    .playback-controls button {
+        min-width: 24px;
+        font-size: 11px;
+    }
+
+    .playback-controls .play-button {
+        min-width: 31px;
+    }
+}
+
+/* =========================================
+   SHORT SCREENS
+========================================= */
+
+@media (max-height: 450px) {
+
+    .music-app {
+        gap: 2px;
+        padding-block: 2px;
+    }
+
+    .current-panel {
+        padding: 3px;
+    }
+
+    .track-side {
+        gap: 2px;
+    }
+
+    .eq-presets {
+        gap: 2px;
+    }
+
+    .eq-presets button {
+        padding: 2px 4px;
+    }
+
+    .speed-buttons button {
+        padding: 3px 2px;
+    }
+
+    .playback-controls button {
+        height: 25px;
+    }
+
+    .playback-controls .play-button {
+        height: 29px;
+    }
+}
