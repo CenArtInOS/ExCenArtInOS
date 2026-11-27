@@ -1,0 +1,727 @@
+
+/* =========================================
+   ExCenArtInOS - Main homepage styling
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eeeeee;
+    font-family: Arial, sans-serif;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Main screen structure */
+
+.app-shell {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    display: grid;
+
+    grid-template-rows: 7% 82% 11%;
+
+    overflow: hidden;
+    background: #101010;
+}
+
+/* Status bar */
+
+.status-bar {
+    grid-row: 1;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) auto auto;
+
+    align-items: center;
+
+    column-gap: clamp(5px, 1.8vw, 10px);
+
+    padding: 0 3%;
+
+    background: #080808;
+    color: #dddddd;
+
+    white-space: nowrap;
+
+    font-size: clamp(8px, 2.65vw, 12px);
+
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+}
+
+.status-bar span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Homepage */
+
+.home-content {
+    grid-row: 2;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        5fr 5fr 5fr 50fr 5fr 7fr 5fr;
+}
+
+.top-gap,
+.small-gap {
+    width: 100%;
+}
+
+/* Search */
+
+.search-box {
+    width: 75%;
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    background: #202020;
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 0 10px;
+
+    background: transparent;
+    color: white;
+
+    border: 0;
+    outline: 0;
+
+    font-size: 13px;
+}
+
+.search-box input::placeholder {
+    color: #999999;
+}
+
+.search-box button {
+    padding: 0 12px;
+
+    background: #292929;
+    color: #eeeeee;
+
+    border: 0;
+    font-size: 12px;
+}
+
+/* Application grid */
+
+.app-grid {
+    width: 90%;
+    height: 100%;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+.app {
+    min-width: 0;
+
+    background: #191919;
+    color: #dddddd;
+
+    border: 0;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 12px;
+}
+
+.app-icon {
+    font-size: 23px;
+    line-height: 1;
+}
+
+.app-status {
+    color: #999999;
+    font-size: 9px;
+}
+
+.app.is-ready .app-status {
+    color: #a9c9a9;
+}
+
+.app.is-unavailable {
+    opacity: .72;
+}
+
+/* Security and Support */
+
+.extra-options {
+    width: 75%;
+    height: 100%;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option {
+    background: #191919;
+    color: #dddddd;
+
+    border: 0;
+    border-radius: 4px;
+
+    font-size: 13px;
+}
+
+/* Bottom navigation */
+
+.bottom-panel {
+    grid-row: 3;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    align-items: center;
+
+    background: #080808;
+
+    padding: 0 0 env(safe-area-inset-bottom);
+}
+
+.bottom-panel button {
+    min-width: 0;
+    height: 75%;
+
+    background: transparent;
+    color: #cccccc;
+
+    border: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 3px;
+}
+
+.bottom-panel button span {
+    font-size: 19px;
+}
+
+.bottom-panel button small {
+    font-size: 9px;
+}
+
+/* Workspace */
+
+.view-panel {
+    position: fixed;
+
+    z-index: 5;
+
+    top: 7%;
+    bottom: 11%;
+
+    left: 0;
+    right: 0;
+
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #141414;
+
+    padding: 8px 4% 10px;
+}
+
+.view-heading {
+    flex: 0 0 38px;
+
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 8px;
+
+    font-size: 16px;
+}
+
+
+#view-content {
+    flex: 1;
+    min-height: 0;
+
+    overflow: auto;
+    overscroll-behavior: contain;
+
+    padding-bottom: 8px;
+}
+
+/* Content sections */
+
+.view-section {
+    background: #1b1b1b;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    border-radius: 4px;
+}
+
+.view-section h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.view-section p {
+    color: #bbbbbb;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.page-note {
+    display: block;
+
+    color: #999999;
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    margin-top: 8px;
+}
+
+.tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.tool-row {
+    width: 100%;
+
+    padding: 12px;
+
+    text-align: left;
+
+    background: #222222;
+    color: #eeeeee;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+.tool-row strong {
+    display: block;
+
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.tool-row small {
+    display: block;
+
+    color: #aaaaaa;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.tool-row .directory-status {
+    margin-top: 5px;
+    color: #a9c9a9;
+}
+
+/* Application iframe */
+
+.app-frame {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 0;
+
+    border: 0;
+    background: #101010;
+}
+
+/* Google search workspace */
+
+.search-results-shell {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    min-height: 0;
+
+    gap: 7px;
+}
+
+.search-query {
+    flex: 0 0 auto;
+
+    color: #bbbbbb;
+    font-size: 11px;
+
+    overflow-wrap: anywhere;
+}
+
+.search-frame {
+    flex: 1;
+
+    width: 100%;
+    min-height: 100px;
+
+    border: 0;
+    background: #ffffff;
+
+    border-radius: 3px;
+}
+
+.search-fallback {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    gap: 5px 10px;
+
+    padding: 8px;
+
+    background: #1d1d1d;
+    border-radius: 3px;
+
+    color: #aaaaaa;
+    font-size: 10px;
+}
+
+.search-fallback a {
+    color: #dddddd;
+    text-decoration: underline;
+}
+
+/* Clock */
+
+.clock-display {
+    font-size: clamp(35px, 10vw, 55px);
+
+    text-align: center;
+
+    padding: 25px 0;
+
+    font-variant-numeric: tabular-nums;
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* Calendar */
+
+.calendar-controls {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 5px;
+    margin-bottom: 12px;
+
+    font-size: 12px;
+}
+
+.calendar-controls button {
+    background: #292929;
+    color: white;
+
+    border: 0;
+
+    padding: 8px 10px;
+
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+.calendar-grid {
+    display: grid;
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
+    gap: 4px;
+    text-align: center;
+}
+
+.calendar-grid span {
+    padding: 9px 0;
+
+    font-size: 12px;
+
+    background: #242424;
+    border-radius: 3px;
+}
+
+.calendar-grid .weekday {
+    color: #999999;
+    background: #191919;
+}
+
+.calendar-grid .empty-day {
+    background: transparent;
+}
+
+.calendar-grid .today {
+    background: #555555;
+    color: white;
+}
+
+/* Calculator */
+
+.calculator {
+    max-width: 360px;
+    margin: auto;
+}
+
+.calculator input {
+    width: 100%;
+
+    padding: 15px 10px;
+    margin-bottom: 10px;
+
+    background: #202020;
+    color: white;
+
+    border: 0;
+
+    text-align: right;
+    font-size: 23px;
+}
+
+.calc-buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.calc-buttons button {
+    min-height: 48px;
+
+    background: #242424;
+    color: white;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+/* Forms */
+
+.form-field {
+    width: 100%;
+
+    padding: 12px;
+    margin: 6px 0 10px;
+
+    background: #252525;
+    color: white;
+
+    border: 1px solid #444444;
+    border-radius: 4px;
+}
+
+.action-button {
+    padding: 11px 16px;
+
+    background: #333333;
+    color: white;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+.message {
+    margin-top: 10px;
+
+    font-size: 12px;
+    color: #bbbbbb;
+
+    overflow-wrap: anywhere;
+}
+
+/* Device access */
+
+.device-access-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.device-access-list .tool-row {
+    cursor: pointer;
+}
+
+/* Lock screen */
+
+.lock-screen {
+    position: fixed;
+
+    z-index: 100;
+
+    inset: 0;
+
+    background: #080808;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.lock-content {
+    width: 100%;
+    max-width: 320px;
+}
+
+.lock-clock {
+    font-size: 48px;
+    margin-bottom: 8px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+.lock-content h3 {
+    margin: 35px 0 10px;
+    font-size: 17px;
+}
+
+.lock-content p {
+    color: #aaaaaa;
+
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.lock-content input {
+    width: 100%;
+
+    padding: 12px;
+
+    background: #202020;
+    color: white;
+
+    border: 1px solid #444444;
+    border-radius: 4px;
+
+    margin-bottom: 8px;
+}
+
+.lock-content button {
+    width: 100%;
+
+    padding: 12px;
+
+    background: #303030;
+    color: white;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+/* Focus and touch */
+
+button:active {
+    background-color: #383838;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: 1px solid #888888;
+    outline-offset: 2px;
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+
+    .status-bar {
+        column-gap: 5px;
+        padding-inline: 2%;
+        font-size: 8px;
+    }
+
+    .app-grid {
+        gap: 5px;
+    }
+
+    .bottom-panel button small {
+        font-size: 8px;
+    }
+
+    .bottom-panel button span {
+        font-size: 17px;
+    }
+}
