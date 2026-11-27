@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>ExCenArtInOS Music</title>
+    <link rel="stylesheet" href="music.css">
+</head>
+<body>
+
+<main class="music-app">
+
+    <!-- TOP TOOLBAR: Search, folder and music -->
+    <header class="music-toolbar">
+
+        <input
+            type="search"
+            id="music-search"
+            placeholder="Search songs..."
+            autocomplete="off"
+            aria-label="Search music"
+        >
+
+        <button id="scan-music" type="button">
+            + Folder
+        </button>
+
+        <button id="add-music-files" type="button">
+            + Music
+        </button>
+
+    </header>
+
+    <!-- Folder selection -->
+    <input
+        id="folder-input"
+        type="file"
+        accept="audio/*"
+        multiple
+        webkitdirectory
+        hidden
+    >
+
+    <!-- Individual music selection -->
+    <input
+        id="music-files-input"
+        type="file"
+        accept="audio/*"
+        multiple
+        hidden
+    >
+
+    <!-- MUSIC LIBRARY -->
+    <section class="library-panel">
+
+        <div id="library-list" class="library-list">
+
+            <div class="empty-state">
+                <span>♫</span>
+                <p>No music loaded</p>
+                <small>Add a folder or music files.</small>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CURRENT MUSIC -->
+    <section class="current-panel">
+
+        <!-- LEFT: Artwork -->
+        <div class="artwork-area">
+
+            <img id="album-art"
+                 alt="Album artwork"
+                 hidden>
+
+            <div id="artwork-placeholder">
+                ♫
+            </div>
+
+        </div>
+
+        <!-- RIGHT: Track information and controls -->
+        <div class="track-side">
+
+            <!-- Larger track information area -->
+            <div class="track-information">
+
+                <h2 id="track-title">No song selected</h2>
+
+                <p id="track-artist">NA</p>
+
+            </div>
+
+            <!-- Equalizer presets -->
+            <div class="equalizer">
+
+                <div class="eq-presets">
+
+                    <button data-preset="Flat" class="active">Flat</button>
+                    <button data-preset="Bass Boost">Bass</button>
+                    <button data-preset="Vocal">Vocal</button>
+                    <button data-preset="Treble">Treble</button>
+                    <button data-preset="Heavy">Heavy</button>
+                    <button data-preset="Light">Light</button>
+                    <button data-preset="Instrument">Instrument</button>
+                    <button data-preset="Voice + Bass">Voice+Bass</button>
+                    <button data-preset="Acoustic">Acoustic</button>
+
+                </div>
+
+                <p id="eq-status">Flat preset</p>
+
+            </div>
+
+            <!-- Playback speed -->
+            <div class="speed-section">
+
+                <div class="speed-buttons">
+    <button data-speed="0.1">0.1×</button>
+    <button data-speed="0.5">0.5×</button>
+    <button data-speed="1" class="active">1×</button>
+    <button data-speed="1.5">1.5×</button>
+    <button data-speed="2">2×</button>
+    <button data-speed="3">3×</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- AUDIO ENGINE -->
+    <audio id="audio-player" preload="metadata"></audio>
+
+    <!-- SEEK BAR -->
+    <section class="seek-area">
+
+        <input id="seek-bar"
+               type="range"
+               min="0"
+               max="1000"
+               value="0">
+
+        <div class="time-row">
+
+            <span id="current-time">00:00</span>
+
+            <span id="total-time">00:00</span>
+
+        </div>
+
+    </section>
+
+    <!-- PLAYBACK CONTROLS -->
+    <section class="playback-controls">
+
+        <button id="previous-button"
+                aria-label="Previous song"
+                title="Previous">|◀</button>
+
+        <button id="play-button"
+                class="play-button"
+                aria-label="Play"
+                title="Play">▶</button>
+
+        <button id="next-button"
+                aria-label="Next song"
+                title="Next">▶|</button>
+
+        <button id="shuffle-button"
+                aria-label="Shuffle"
+                title="Shuffle off">⇄</button>
+
+        <button id="repeat-button"
+                aria-label="Repeat"
+                title="Repeat off">↻</button>
+
+        <div class="volume-control">
+
+            <span>♪</span>
+
+            <input id="volume-bar"
+                   type="range"
+                   min="0"
+                   max="100"
+                   value="80"
+                   aria-label="Volume">
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+<script src="music.js"></script>
+
+</body>
+</html>
