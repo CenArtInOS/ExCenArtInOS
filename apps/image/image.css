@@ -1,0 +1,339 @@
+
+/* =====================================
+   ExCenArtInOS Image Viewer
+   Dark layout with zoom and panning
+===================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eeeeee;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top toolbar */
+.toolbar {
+    height: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 8px;
+    background: #101010;
+}
+
+.toolbar input[type="search"] {
+    flex: 1;
+    min-width: 0;
+    height: 34px;
+    border: 1px solid #303030;
+    border-radius: 5px;
+    background: #1b1b1b;
+    color: white;
+    padding: 0 9px;
+    outline: none;
+    font-size: 13px;
+}
+
+button {
+    border: 1px solid #383838;
+    border-radius: 5px;
+    background: #242424;
+    color: #eeeeee;
+    padding: 7px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+button:active {
+    background: #414141;
+}
+
+/* Thumbnail strip */
+.thumbnail-strip {
+    height: 76px;
+    min-height: 76px;
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 7px 8px;
+    background: #181818;
+    scrollbar-width: none;
+}
+
+.thumbnail-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnail {
+    flex: 0 0 calc((100% - 28px) / 5);
+    min-width: 55px;
+    height: 62px;
+    border: 1px solid #383838;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #242424;
+    cursor: pointer;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail.active {
+    border: 2px solid #eeeeee;
+}
+
+.empty-thumbnails {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777777;
+    font-size: 12px;
+}
+
+/* Main image viewing area */
+.viewer {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background: #080808;
+    padding: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #555 #151515;
+    touch-action: pan-x pan-y;
+    overscroll-behavior: contain;
+}
+
+/* Image positioning and panning */
+#mainImage {
+    display: block;
+    flex: none;
+    max-width: none;
+    max-height: none;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+    cursor: grab;
+}
+
+#mainImage.dragging {
+    cursor: grabbing;
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #777777;
+    font-size: 13px;
+}
+
+/* Image filename */
+.image-info {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    max-width: 75%;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background: #000000aa;
+    color: #dddddd;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* One-line bottom controls */
+.control-bar {
+    height: 54px;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 9px;
+    background: #101010;
+    border-top: 1px solid #292929;
+    overflow: hidden;
+}
+
+.control-group {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Rotation */
+.rotate-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.rotate-group input[type="range"] {
+    flex: 1;
+    min-width: 35px;
+    width: 100%;
+    height: 4px;
+    accent-color: #eeeeee;
+}
+
+#rotateValue {
+    width: 43px;
+    height: 30px;
+    border: 1px solid #383838;
+    border-radius: 4px;
+    background: #222222;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    outline: none;
+    padding: 2px;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+#rotateValue::-webkit-inner-spin-button,
+#rotateValue::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.rotate-group > span {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+/* Flip */
+.flip-group button {
+    width: 34px;
+    height: 32px;
+    padding: 0;
+    font-size: 19px;
+}
+
+/* Zoom */
+.zoom-group {
+    gap: 4px;
+}
+
+.zoom-group button {
+    width: 29px;
+    height: 32px;
+    padding: 0;
+    font-size: 19px;
+}
+
+.zoom-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+#zoomValue {
+    width: 43px;
+    height: 30px;
+    border: 1px solid #383838;
+    border-radius: 4px;
+    background: #222222;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    outline: none;
+    padding: 2px;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+#zoomValue::-webkit-inner-spin-button,
+#zoomValue::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.zoom-input-wrap span {
+    color: #cccccc;
+    font-size: 11px;
+}
+
+/* Compact phone layout */
+@media (max-width: 390px) {
+    .control-bar {
+        gap: 4px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .control-group {
+        gap: 3px;
+    }
+
+    #rotateValue,
+    #zoomValue {
+        width: 37px;
+        font-size: 10px;
+    }
+
+    .flip-group button {
+        width: 29px;
+    }
+
+    .zoom-group button {
+        width: 25px;
+    }
+}
+
+@media (max-height: 450px) {
+    .toolbar {
+        height: 40px;
+        min-height: 40px;
+    }
+
+    .thumbnail-strip {
+        height: 55px;
+        min-height: 55px;
+        padding: 4px 7px;
+    }
+
+    .thumbnail {
+        height: 46px;
+    }
+
+    .control-bar {
+        height: 44px;
+        min-height: 44px;
+    }
+}
