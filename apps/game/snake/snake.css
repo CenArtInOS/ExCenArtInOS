@@ -1,0 +1,206 @@
+
+/* =========================================
+   ExCenArtInOS SNAKE
+   Full-screen dark interface
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: #101010;
+    color: #dedede;
+    font-family: Arial, sans-serif;
+    overscroll-behavior: none;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #101010;
+}
+
+/* Top score bar */
+.topbar {
+    height: 42px;
+    flex: 0 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background: #101010;
+    border-bottom: 1px solid #292d31;
+}
+
+.topbar strong {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: #d5d9dd;
+}
+
+.stats {
+    display: flex;
+    gap: 14px;
+    font-size: 10px;
+    color: #92999f;
+}
+
+.stats b {
+    color: #e0e3e6;
+    margin-left: 3px;
+}
+
+/* Map fills all available space */
+.world {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    background: #111315;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+/* Bottom controls */
+.controls {
+    height: 112px;
+    flex: 0 0 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 12px;
+    padding: 7px 16px;
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+    background: #101010;
+    border-top: 1px solid #292d31;
+}
+
+/* Direction pad */
+.direction-pad {
+    width: 150px;
+    height: 94px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.direction-pad button,
+.pause-button {
+    background: #25292d;
+    color: #d3d8dc;
+    border: 1px solid #454c53;
+    border-radius: 7px;
+    font-size: 17px;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.direction-pad button:active,
+.pause-button:active {
+    background: #41484f;
+    color: #ffffff;
+}
+
+.direction-pad .empty {
+    visibility: hidden;
+}
+
+.pause-button {
+    width: 90px;
+    height: 44px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Start, pause and game-over overlays */
+.message {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(10, 11, 12, 0.86);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu {
+    width: min(280px, 90%);
+    padding: 23px 18px;
+    text-align: center;
+    background: #1b1e21;
+    border: 1px solid #444b52;
+    border-radius: 9px;
+}
+
+.menu h2 {
+    color: #e0e4e8;
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.menu p {
+    color: #a0a7ad;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.menu button {
+    min-height: 40px;
+    padding: 0 22px;
+    background: #30363b;
+    color: #e0e4e8;
+    border: 1px solid #596168;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.menu button:active {
+    background: #454d54;
+}
+
+/* Short-screen adjustment */
+@media (max-height: 480px) {
+    .topbar {
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .controls {
+        height: 92px;
+        flex-basis: 92px;
+    }
+
+    .direction-pad {
+        height: 78px;
+    }
+}
