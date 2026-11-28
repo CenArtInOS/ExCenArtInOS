@@ -1,0 +1,414 @@
+
+/* =========================================
+   EXCENARTINOS QR GENERATOR
+   Compact single-screen iframe layout
+========================================= */
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #0b0b0b;
+    color: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100dvh;
+}
+
+/* Main application */
+.qr-app {
+    width: 100%;
+    max-width: 560px;
+    height: 100%;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 10px 16px 7px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Heading */
+.qr-heading {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 2px 10px;
+    border-bottom: 1px solid #242424;
+}
+
+.qr-heading h1 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.qr-heading p {
+    margin: 4px 0 0;
+    color: #858585;
+    font-size: 11px;
+}
+
+.qr-symbol {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #303030;
+    border-radius: 10px;
+    background: #171717;
+    color: #dddddd;
+    font-size: 20px;
+}
+
+/* Input section */
+.qr-input-section {
+    flex-shrink: 0;
+    margin-top: 11px;
+}
+
+.qr-input-section label {
+    display: block;
+    margin-bottom: 6px;
+    color: #c8c8c8;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.qr-input-section textarea {
+    width: 100%;
+    height: 58px;
+    min-height: 58px;
+    max-height: 58px;
+    padding: 9px 11px;
+    resize: none;
+    border: 1px solid #303030;
+    border-radius: 9px;
+    outline: none;
+    background: #151515;
+    color: #eeeeee;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.qr-input-section textarea::placeholder {
+    color: #656565;
+}
+
+.qr-input-section textarea:focus {
+    border-color: #777777;
+}
+
+/* Character counter */
+.input-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    height: 23px;
+    color: #777777;
+    font-size: 9px;
+}
+
+.input-meta button {
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: #bbbbbb;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+/* Generate button */
+.generate-button {
+    width: 100%;
+    height: 37px;
+    margin-top: 5px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    background: #eeeeee;
+    color: #111111;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.generate-button:active {
+    background: #cccccc;
+}
+
+/* Result section */
+.qr-result-section {
+    flex: 1;
+    min-height: 0;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-heading {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.qr-status {
+    color: #777777;
+    font-size: 9px;
+    text-align: right;
+}
+
+/* QR preview */
+.qr-preview {
+    flex: 1;
+    min-height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border: 1px solid #292929;
+    border-radius: 11px;
+    background: #141414;
+    overflow: hidden;
+}
+
+.qr-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #777777;
+    font-size: 10px;
+    text-align: center;
+}
+
+.placeholder-symbol {
+    color: #555555;
+    font-size: 38px;
+}
+
+/* Generated QR code */
+.qr-box {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.qr-box.visible {
+    display: block;
+}
+
+.qr-box img,
+.qr-box canvas {
+    display: block;
+    width: 160px;
+    height: 160px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Result information */
+.qr-info {
+    flex-shrink: 0;
+    min-height: 30px;
+    margin-top: 7px;
+    padding: 7px 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    background: #141414;
+    color: #999999;
+    font-size: 10px;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.qr-info.error {
+    color: #ff8585;
+    border-color: #563030;
+}
+
+.qr-info.success {
+    color: #c5c5c5;
+}
+
+/* Action buttons */
+.qr-actions {
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 7px;
+}
+
+.action-button {
+    min-width: 0;
+    height: 36px;
+    border: 1px solid #343434;
+    border-radius: 8px;
+    background: #202020;
+    color: #eeeeee;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.action-button:active:not(:disabled) {
+    background: #383838;
+}
+
+.action-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* Regenerate */
+.regenerate-button {
+    flex-shrink: 0;
+    width: 100%;
+    height: 30px;
+    margin-top: 6px;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    background: transparent;
+    color: #bbbbbb;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.regenerate-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* Footer */
+.qr-footer {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 7px 2px 1px;
+    border-top: 1px solid #242424;
+    color: #666666;
+    font-size: 9px;
+    letter-spacing: 0.3px;
+}
+
+/* Compact screens */
+@media (max-width: 360px) {
+    .qr-app {
+        padding-right: 11px;
+        padding-left: 11px;
+    }
+
+    .qr-preview {
+        min-height: 115px;
+    }
+
+    .qr-box img,
+    .qr-box canvas {
+        width: 145px;
+        height: 145px;
+    }
+}
+
+/* Short phone screens */
+@media (max-height: 600px) {
+    .qr-app {
+        padding-top: 5px;
+        padding-bottom: 4px;
+    }
+
+    .qr-heading {
+        padding-bottom: 6px;
+    }
+
+    .qr-heading h1 {
+        font-size: 17px;
+    }
+
+    .qr-heading p {
+        font-size: 10px;
+    }
+
+    .qr-input-section {
+        margin-top: 6px;
+    }
+
+    .qr-input-section textarea {
+        height: 43px;
+        min-height: 43px;
+        max-height: 43px;
+    }
+
+    .input-meta {
+        height: 19px;
+    }
+
+    .generate-button {
+        height: 32px;
+        margin-top: 2px;
+    }
+
+    .qr-result-section {
+        margin-top: 7px;
+    }
+
+    .qr-preview {
+        min-height: 100px;
+    }
+
+    .qr-box img,
+    .qr-box canvas {
+        width: 125px;
+        height: 125px;
+    }
+
+    .qr-info {
+        min-height: 25px;
+        margin-top: 5px;
+        padding: 4px;
+    }
+
+    .action-button {
+        height: 31px;
+    }
+
+    .regenerate-button {
+        height: 26px;
+        margin-top: 4px;
+    }
+
+    .qr-footer {
+        margin-top: 5px;
+        padding-top: 5px;
+    }
+}
