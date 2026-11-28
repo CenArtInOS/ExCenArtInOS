@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+    <title>Text</title>
+
+    <link rel="stylesheet" href="text.css">
+    <script src="text.js" defer></script>
+</head>
+<body>
+
+<main class="app">
+
+    <!-- Fixed editing toolbar -->
+    <header class="toolbar">
+
+        <!-- Formatting and alignment -->
+        <div class="toolbar-row">
+
+            <button type="button" class="tool-button" data-action="undo" title="Undo">
+                ↶
+            </button>
+
+            <button type="button" class="tool-button" data-action="redo" title="Redo">
+                ↷
+            </button>
+
+            <span class="toolbar-divider"></span>
+
+            <button type="button" class="tool-button format-button" data-command="bold" title="Bold">
+                <b>B</b>
+            </button>
+
+            <button type="button" class="tool-button format-button" data-command="italic" title="Italic">
+                <i>I</i>
+            </button>
+
+            <button type="button" class="tool-button format-button" data-command="underline" title="Underline">
+                <u>U</u>
+            </button>
+
+            <span class="toolbar-divider"></span>
+
+            <select id="alignment" class="tool-select" aria-label="Text alignment">
+                <option value="justifyLeft">Left</option>
+                <option value="justifyCenter">Centre</option>
+                <option value="justifyRight">Right</option>
+            </select>
+
+            <select id="listOptions" class="tool-select" aria-label="List type">
+                <option value="">List</option>
+                <option value="insertUnorderedList">Bullets</option>
+                <option value="insertOrderedList">Numbered</option>
+            </select>
+
+        </div>
+
+        <!-- Colour, watermark and document actions -->
+        <div class="toolbar-row second-row">
+
+            <label class="color-control" title="Text colour">
+                <span>A</span>
+                <input type="color" id="textColor" value="#e8e8e8" aria-label="Text colour">
+            </label>
+
+            <label class="color-control" title="Page background">
+                <span class="background-symbol">▰</span>
+                <input type="color" id="pageColor" value="#1b1b1b" aria-label="Page background">
+            </label>
+
+            <input
+                type="text"
+                id="watermarkInput"
+                class="watermark-input"
+                placeholder="Watermark"
+                maxlength="40"
+                aria-label="Watermark text"
+            >
+
+            <button type="button" id="previewButton" class="tool-button action-button">
+                Preview
+            </button>
+
+            <button type="button" id="downloadButton" class="tool-button action-button">
+                Download TXT
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Writing workspace -->
+    <section class="workspace">
+
+        <div class="editor-area" id="editorArea">
+
+            <!-- Watermark is separate from editable content -->
+            <div class="watermark-display" id="watermarkDisplay"></div>
+
+            <!-- Native standalone editor -->
+            <div
+                id="editor"
+                class="editor"
+                contenteditable="true"
+                tabindex="0"
+                spellcheck="true"
+                role="textbox"
+                aria-label="Writing area"
+                aria-multiline="true"
+            ></div>
+
+        </div>
+
+    </section>
+
+    <!-- Local save status -->
+    <div class="save-status" id="saveStatus" aria-live="polite">
+        Saved locally
+    </div>
+
+    <!-- Preview screen -->
+    <section class="preview-screen" id="previewScreen" hidden>
+
+        <header class="preview-header">
+            <span>Preview</span>
+
+            <button type="button" id="closePreview" class="tool-button">
+                Close
+            </button>
+        </header>
+
+        <div class="preview-area" id="previewArea">
+
+            <div class="preview-watermark" id="previewWatermark"></div>
+
+            <article class="preview-content" id="previewContent"></article>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
