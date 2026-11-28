@@ -1,0 +1,174 @@
+
+/* =====================================
+   EXCENARTINOS - GAME MENU
+   Minimal dark interface
+===================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0d13;
+    color: #d5dbe5;
+    font-family: Arial, sans-serif;
+}
+
+/* Scrollable game list */
+
+.game-list {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 8px;
+
+    background: #0a0d13;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+    scrollbar-color: #303640 transparent;
+}
+
+/* Individual game row */
+
+.game-item {
+    width: 100%;
+    min-height: 65px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 9px 11px;
+
+    background: #11161f;
+    border: 1px solid #1c2430;
+    border-radius: 8px;
+
+    color: #d5dbe5;
+    text-align: left;
+
+    cursor: pointer;
+    outline: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Interaction */
+
+.game-item:active {
+    background: #19212c;
+    border-color: #354254;
+}
+
+/* Game icon */
+
+.game-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1a222e;
+    border: 1px solid #273140;
+    border-radius: 7px;
+
+    font-size: 20px;
+
+    filter: saturate(0.65);
+}
+
+/* Game information */
+
+.game-info {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.game-info strong {
+    color: #dce2eb;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.game-info small {
+    color: #778396;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+/* Navigation arrow */
+
+.arrow {
+    color: #596779;
+    font-size: 21px;
+    font-weight: 300;
+    padding: 0 3px;
+}
+
+/* Scrollbar */
+
+.game-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.game-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.game-list::-webkit-scrollbar-thumb {
+    background: #303640;
+    border-radius: 5px;
+}
+
+/* Compact mobile layout */
+
+@media (max-width: 360px) {
+
+    .game-list {
+        padding: 6px;
+        gap: 5px;
+    }
+
+    .game-item {
+        min-height: 60px;
+        padding: 8px;
+        gap: 9px;
+    }
+
+    .game-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .game-info strong {
+        font-size: 12px;
+    }
+
+    .game-info small {
+        font-size: 9px;
+    }
+}
