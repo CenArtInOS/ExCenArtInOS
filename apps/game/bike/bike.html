@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#101010">
+    <title>Motorcycle Off-Road</title>
+    <link rel="stylesheet" href="bike.css">
+</head>
+<body>
+
+<main class="game">
+
+    <header class="topbar">
+        <strong>OFF-ROAD</strong>
+        <div class="stats">
+            <span id="speed">0 km/h</span>
+            <span id="distance">0 m</span>
+            <span id="time">DAY</span>
+        </div>
+    </header>
+
+    <section class="world">
+        <canvas id="gameCanvas"></canvas>
+
+        <div class="message" id="message">
+            <div class="menu">
+                <h2>MOTORCYCLE</h2>
+                <p>Ride through changing landscapes.</p>
+                <button id="startButton">START RIDE</button>
+            </div>
+        </div>
+
+        <div class="message hidden" id="crashMessage">
+            <div class="menu">
+                <h2>CRASH!</h2>
+                <p id="crashReason">Try again.</p>
+                <button id="restartButton">RIDE AGAIN</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="controls">
+        <button id="leanBack" class="control tilt">↶</button>
+        <button id="brake" class="control brake">BRAKE</button>
+        <button id="accelerate" class="control accelerate">SPEED</button>
+        <button id="leanForward" class="control tilt">↷</button>
+    </footer>
+
+</main>
+
+<script src="bike.js"></script>
+</body>
+</html>
