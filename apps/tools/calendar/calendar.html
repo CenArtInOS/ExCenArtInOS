@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+    <title>Calendar | ExCenArtInOS</title>
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+
+    <main class="calendar-app">
+
+        <!-- Calendar heading -->
+        <header class="calendar-heading">
+            <div>
+                <h1>Calendar</h1>
+                <p>Explore dates and plan your time</p>
+            </div>
+            <div class="calendar-symbol" aria-hidden="true">▦</div>
+        </header>
+
+        <!-- Month navigation -->
+        <section class="calendar-navigation">
+            <button id="previousMonth" class="nav-button" aria-label="Previous month">‹</button>
+
+            <div class="month-year">
+                <select id="month" aria-label="Select month">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+
+                <input
+                    id="year"
+                    type="number"
+                    min="1"
+                    max="3000"
+                    inputmode="numeric"
+                    aria-label="Calendar year"
+                >
+            </div>
+
+            <button id="nextMonth" class="nav-button" aria-label="Next month">›</button>
+        </section>
+
+        <!-- Calendar actions -->
+        <div class="calendar-actions">
+            <button id="todayButton" class="today-button">Today</button>
+            <span id="calendarInfo" class="calendar-info"></span>
+        </div>
+
+        <!-- Calendar grid -->
+        <section class="calendar-panel" aria-label="Monthly calendar">
+            <div class="weekday-grid">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <div id="calendar" class="calendar-grid"></div>
+        </section>
+
+        <!-- Selected date information -->
+        <section class="selected-date-panel">
+            <div class="selected-date-icon">◷</div>
+            <div class="selected-date-details">
+                <span class="selected-label">Selected date</span>
+                <strong id="selectedDate">Select a date</strong>
+            </div>
+            <button id="clearSelection" class="clear-selection" aria-label="Clear selected date">×</button>
+        </section>
+
+        <div id="calendarMessage" class="calendar-message" role="status" aria-live="polite">
+            Select any date to view it here
+        </div>
+
+        <!-- App footer -->
+        <footer class="calendar-footer">
+            <span>ExCenArtInOS</span>
+            <span>Calendar</span>
+        </footer>
+
+    </main>
+
+    <script src="calendar.js"></script>
+</body>
+</html>
