@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#101010">
+    <title>Block Puzzle</title>
+    <link rel="stylesheet" href="block.css">
+</head>
+<body>
+
+<main class="game">
+
+    <!-- Top status bar -->
+    <header class="topbar">
+        <strong>BLOCK PUZZLE</strong>
+
+        <div class="stats">
+            <span>SCORE <b id="score">0</b></span>
+            <span>LINES <b id="lines">0</b></span>
+            <span>RISE <b id="rise">3</b></span>
+        </div>
+    </header>
+
+    <!-- Main playing area -->
+    <section class="game-area">
+
+        <div class="board-wrap">
+
+            <canvas id="gameCanvas"></canvas>
+
+            <!-- Start screen -->
+            <div class="overlay" id="startScreen">
+                <div class="menu">
+                    <h2>BLOCK PUZZLE</h2>
+                    <p>Clear lines. Survive the rising floor.</p>
+                    <button id="startButton">START GAME</button>
+                </div>
+            </div>
+
+            <!-- Pause screen -->
+            <div class="overlay hidden" id="pauseScreen">
+                <div class="menu">
+                    <h2>PAUSED</h2>
+                    <button id="resumeButton">RESUME</button>
+                </div>
+            </div>
+
+            <!-- Game over screen -->
+            <div class="overlay hidden" id="gameOverScreen">
+                <div class="menu">
+                    <h2>GAME OVER</h2>
+                    <p>Final score: <b id="finalScore">0</b></p>
+                    <button id="restartButton">PLAY AGAIN</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Next block preview -->
+        <aside class="next-panel">
+            <span>NEXT</span>
+            <canvas id="nextCanvas"></canvas>
+        </aside>
+
+    </section>
+
+    <!-- Mobile controls -->
+    <footer class="controls">
+
+        <div class="movement">
+            <button class="control" id="leftButton">◀</button>
+            <button class="control" id="rightButton">▶</button>
+        </div>
+
+        <div class="actions">
+            <button class="control" id="rotateButton">↻</button>
+            <button class="control drop" id="dropButton">DROP</button>
+            <button class="control" id="downButton">▼</button>
+            <button class="control pause" id="pauseButton">Ⅱ</button>
+        </div>
+
+    </footer>
+
+</main>
+
+<script src="block.js"></script>
+</body>
+</html>
