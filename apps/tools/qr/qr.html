@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+    <title>QR Generator | ExCenArtInOS</title>
+    <link rel="stylesheet" href="qr.css">
+
+    <!-- QR Code generation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <main class="qr-app">
+
+        <!-- Heading -->
+        <header class="qr-heading">
+            <div>
+                <h1>QR Generator</h1>
+                <p>Create and download QR codes</p>
+            </div>
+            <div class="qr-symbol" aria-hidden="true">▦</div>
+        </header>
+
+        <!-- Input section -->
+        <section class="qr-input-section">
+
+            <label for="qrInput">Your content</label>
+
+            <textarea
+                id="qrInput"
+                maxlength="300"
+                placeholder="Enter text, website URL or other content..."
+                spellcheck="false"
+            ></textarea>
+
+            <div class="input-meta">
+                <span id="characterCount">0 / 300 characters</span>
+                <button id="clearInput" type="button">Clear text</button>
+            </div>
+
+            <button id="generateButton" class="generate-button" type="button">
+                Generate QR Code
+            </button>
+
+        </section>
+
+        <!-- QR result -->
+        <section class="qr-result-section">
+
+            <div class="section-heading">
+                <h2>QR Preview</h2>
+                <span id="qrStatus" class="qr-status">Waiting for input</span>
+            </div>
+
+            <div class="qr-preview">
+                <div id="qrPlaceholder" class="qr-placeholder">
+                    <span class="placeholder-symbol">▦</span>
+                    <span>Your QR code will appear here</span>
+                </div>
+
+                <div id="qrBox" class="qr-box" aria-label="Generated QR code"></div>
+            </div>
+
+            <div id="info" class="qr-info" role="status" aria-live="polite">
+                Enter your content and generate a QR code.
+            </div>
+
+            <!-- Actions -->
+            <div class="qr-actions">
+                <button id="downloadButton" class="action-button" type="button" disabled>
+                    Download PNG
+                </button>
+
+                <button id="copyButton" class="action-button" type="button" disabled>
+                    Copy Content
+                </button>
+            </div>
+
+            <button id="regenerateButton" class="regenerate-button" type="button" disabled>
+                Regenerate QR
+            </button>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="qr-footer">
+            <span>ExCenArtInOS</span>
+            <span>QR Generator</span>
+        </footer>
+
+    </main>
+
+    <script src="qr.js"></script>
+</body>
+</html>
