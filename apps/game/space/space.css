@@ -1,0 +1,260 @@
+/* =========================================
+   SPACE COMBAT - dark, mobile-first layout
+========================================= */
+
+:root {
+    color-scheme: dark;
+    --page: #080d18;
+    --panel: #101a2b;
+    --panel-light: #17243a;
+    --line: #263750;
+    --text: #e8f0ff;
+    --muted: #91a2bd;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    background: var(--page);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    overscroll-behavior: none;
+}
+
+body { user-select: none; -webkit-user-select: none; }
+button { color: var(--text); font: inherit; touch-action: none; }
+
+.game-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: env(safe-area-inset-top) 8px env(safe-area-inset-bottom);
+    background: var(--page);
+}
+
+/* Top score and pause bar. */
+.top-hud {
+    flex: 0 0 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+    background: #050912;
+    border-bottom: 1px solid var(--line);
+}
+
+.hud-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 48px;
+}
+
+.hud-stat span, .health-row > span {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.hud-stat strong {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pause-button {
+    width: 36px;
+    height: 32px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel-light);
+    font-size: 18px;
+}
+
+/* Overall health bars. Individual ship bars are drawn on the canvas. */
+.health-hud {
+    flex: 0 0 auto;
+    display: grid;
+    gap: 6px;
+    padding: 7px 5px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+}
+
+.health-row {
+    display: grid;
+    grid-template-columns: 58px 1fr 38px;
+    align-items: center;
+    gap: 7px;
+}
+
+.health-row strong {
+    text-align: right;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.health-track {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #263044;
+}
+
+.health-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    transition: width 100ms linear;
+}
+
+.player-fill { background: #35e889; }
+.enemy-fill { background: #f04459; }
+
+/* Play area uses all remaining screen space. */
+.play-area {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    background: #080d18;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.game-message {
+    position: absolute;
+    z-index: 2;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 90%;
+    padding: 7px 12px;
+    border-radius: 7px;
+    background: rgba(5, 10, 20, .78);
+    color: #eaf4ff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.game-message.visible { opacity: 1; }
+
+/* Start, pause, and game-over overlays. */
+.screen-layer {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(3, 7, 14, .78);
+}
+
+.screen-layer.hidden { display: none; }
+
+.screen-card {
+    width: min(300px, 92%);
+    padding: 22px 18px;
+    border: 1px solid #31435e;
+    border-radius: 14px;
+    background: #111d30;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+}
+
+.screen-card h1, .screen-card h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+
+.screen-card p {
+    margin: 0 0 18px;
+    color: #aab9d0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.main-button {
+    min-height: 42px;
+    width: 100%;
+    border: 0;
+    border-radius: 9px;
+    background: #2379cf;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* Movement pad and dedicated fire control. */
+.control-panel {
+    flex: 0 0 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 7px 12px;
+    background: #050912;
+    border-top: 1px solid var(--line);
+}
+
+.direction-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 42px);
+    grid-template-rows: repeat(2, 39px);
+    gap: 5px;
+}
+
+.direction-pad button, .fire-button {
+    border: 1px solid #344966;
+    border-radius: 9px;
+    background: #17263c;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.direction-pad button:active, .fire-button:active {
+    background: #2c527b;
+}
+
+.control-spacer { display: block; }
+
+.fire-button {
+    width: min(34vw, 116px);
+    height: 78px;
+    border-color: #8e3d4b;
+    background: #702b3b;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 700px) {
+    .game-shell {
+        max-width: 760px;
+        margin: 0 auto;
+        border-left: 1px solid #1a2940;
+        border-right: 1px solid #1a2940;
+    }
+
+    .control-panel {
+        justify-content: center;
+        gap: 70px;
+    }
+}
