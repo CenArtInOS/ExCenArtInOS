@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>ExCenArtInOS Snake</title>
+    <link rel="stylesheet" href="snake.css">
+</head>
+<body>
+
+<main class="game">
+
+    <header class="topbar">
+        <strong>SNAKE</strong>
+
+        <div class="stats">
+            <span>SCORE <b id="score">0</b></span>
+            <span>BEST <b id="best">0</b></span>
+        </div>
+    </header>
+
+    <section class="world">
+        <canvas id="gameCanvas"></canvas>
+
+        <div class="message" id="startOverlay">
+            <div class="menu">
+                <h2>SNAKE</h2>
+                <p>Classic fixed-map challenge</p>
+                <button id="startButton" type="button">START GAME</button>
+            </div>
+        </div>
+
+        <div class="message hidden" id="gameOverOverlay">
+            <div class="menu">
+                <h2>GAME OVER</h2>
+                <p>YOUR SCORE: <b id="finalScore">0</b></p>
+                <button id="restartButton" type="button">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <div class="message hidden" id="pauseOverlay">
+            <div class="menu">
+                <h2>PAUSED</h2>
+                <p>Game is paused</p>
+                <button id="resumeButton" type="button">RESUME</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="controls">
+
+        <div class="direction-pad">
+            <span class="empty"></span>
+            <button type="button" data-direction="up">▲</button>
+            <span class="empty"></span>
+
+            <button type="button" data-direction="left">◀</button>
+            <button type="button" data-direction="down">▼</button>
+            <button type="button" data-direction="right">▶</button>
+        </div>
+
+        <button type="button" id="pauseButton" class="pause-button">
+            PAUSE
+        </button>
+
+    </footer>
+
+</main>
+
+<script src="snake.js"></script>
+</body>
+</html>
