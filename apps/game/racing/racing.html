@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>ExCenArtInOS Racing</title>
+    <link rel="stylesheet" href="racing.css">
+</head>
+<body>
+
+<main class="game">
+
+    <header class="game-header">
+        <div class="brand">
+            <strong>EX RACING</strong>
+            <small id="trackLabel">CITY HIGHWAY</small>
+        </div>
+
+        <div class="stats">
+            <span id="speed">0 KM/H</span>
+            <span id="score">0</span>
+        </div>
+    </header>
+
+    <section class="race-area">
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Track and vehicle selection -->
+        <div class="overlay" id="selection">
+            <div class="selection-box">
+
+                <h2>SELECT TRACK</h2>
+
+                <div class="choices" id="trackChoices">
+                    <button data-track="city" class="selected">CITY</button>
+                    <button data-track="desert">DESERT</button>
+                    <button data-track="night">NIGHT</button>
+                </div>
+
+                <h2>SELECT YOUR VEHICLE</h2>
+
+                <div class="vehicle-choices" id="carChoices">
+                    <button data-car="sedan" class="selected">SEDAN</button>
+                    <button data-car="suv">SUV</button>
+                    <button data-car="police">POLICE SUV</button>
+                    <button data-car="truck">TRUCK</button>
+                    <button data-car="ambulance">AMBULANCE</button>
+                    <button data-car="sports">SPORTS CAR</button>
+                </div>
+
+                <h2>SELECT PAINT</h2>
+
+                <div class="choices" id="paintChoices">
+                    <button data-paint="black" class="selected">BLACK</button>
+                    <button data-paint="white">WHITE</button>
+                </div>
+
+                <button class="start-button" id="startButton">
+                    START RACE
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Game over -->
+        <div class="overlay hidden" id="gameOver">
+            <div class="selection-box">
+                <h2>RACE OVER</h2>
+
+                <p>
+                    Final Score:
+                    <strong id="finalScore">0</strong>
+                </p>
+
+                <button class="start-button" id="restartButton">
+                    RACE AGAIN
+                </button>
+
+                <button class="menu-button" id="menuButton">
+                    CHANGE VEHICLE / TRACK
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Driving controls -->
+    <footer class="controls">
+        <button class="control steering" id="leftButton">◀</button>
+        <button class="control accelerator" id="accelerateButton">SPEED</button>
+        <button class="control brake" id="brakeButton">BRAKE</button>
+        <button class="control steering" id="rightButton">▶</button>
+    </footer>
+
+</main>
+
+<script src="racing.js"></script>
+</body>
+</html>
