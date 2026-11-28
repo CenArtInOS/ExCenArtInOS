@@ -1,0 +1,313 @@
+
+/* =====================================
+   EXCENARTINOS - ALARM CLOCK
+   Minimal dark iframe interface
+===================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0d13;
+    color: #dce2eb;
+    font-family: Arial, sans-serif;
+}
+
+/* Main application */
+
+.alarm-app {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 16px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+    scrollbar-color: #303640 transparent;
+}
+
+/* Application heading */
+
+.top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.app-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e5eaf2;
+}
+
+.app-subtitle {
+    font-size: 10px;
+    color: #778396;
+}
+
+/* Live clock */
+
+.clock-panel {
+    background: #111720;
+    border: 1px solid #202a37;
+    border-radius: 10px;
+
+    padding: 18px 12px;
+    text-align: center;
+}
+
+.current-time {
+    font-size: clamp(32px, 9vw, 46px);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+    color: #e8edf5;
+}
+
+.current-date {
+    margin-top: 7px;
+    font-size: 11px;
+    color: #8390a2;
+}
+
+/* Section headings */
+
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aeb9c9;
+    margin-bottom: 9px;
+}
+
+/* Alarm setup panel */
+
+.alarm-panel {
+    background: #111720;
+    border: 1px solid #202a37;
+    border-radius: 10px;
+    padding: 14px;
+}
+
+/* Time input */
+
+.time-input {
+    width: 100%;
+    height: 54px;
+
+    padding: 8px;
+
+    border-radius: 7px;
+    border: 1px solid #303c4d;
+
+    background: #0b1018;
+    color: #e8edf5;
+
+    font-size: 25px;
+    text-align: center;
+
+    outline: none;
+    color-scheme: dark;
+}
+
+.time-input:focus {
+    border-color: #647b9c;
+}
+
+/* Button layout */
+
+.button-row {
+    display: flex;
+    gap: 8px;
+}
+
+.alarm-panel .button-row {
+    margin-top: 12px;
+}
+
+/* Buttons */
+
+button {
+    min-height: 43px;
+
+    border-radius: 7px;
+    border: 1px solid #303b4b;
+
+    background: #1a2330;
+    color: #dce2eb;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(0.98);
+    background: #263448;
+}
+
+.primary-button {
+    flex: 1;
+    background: #34465e;
+    border-color: #455b77;
+    color: #ffffff;
+}
+
+.primary-button:active {
+    background: #405873;
+}
+
+.secondary-button {
+    padding: 0 16px;
+}
+
+/* Alarm status */
+
+.status-panel {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+    border: 1px solid #202a37;
+
+    background: #101620;
+}
+
+.status-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    background: #1c2735;
+
+    font-size: 17px;
+}
+
+.status-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.status-heading {
+    font-size: 12px;
+    font-weight: 600;
+    color: #dce2eb;
+}
+
+.status-detail {
+    margin-top: 4px;
+    font-size: 10px;
+    color: #8491a3;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Ringing appearance */
+
+.ringing {
+    border-color: #754149;
+    background: #25151a;
+}
+
+.ringing .status-icon {
+    background: #51272e;
+}
+
+.ringing .status-heading {
+    color: #ff9b9b;
+}
+
+/* Snooze and dismiss */
+
+.snooze-button {
+    flex: 1;
+    background: #26394d;
+    border-color: #3c5875;
+    color: #ffffff;
+}
+
+.dismiss-button {
+    flex: 1;
+    background: #512b30;
+    border-color: #714047;
+    color: #ffffff;
+}
+
+/* Information */
+
+.note {
+    font-size: 10px;
+    color: #667487;
+    line-height: 1.5;
+    text-align: center;
+    padding: 2px 8px;
+}
+
+/* Utility */
+
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar */
+
+.alarm-app::-webkit-scrollbar {
+    width: 3px;
+}
+
+.alarm-app::-webkit-scrollbar-thumb {
+    background: #303640;
+    border-radius: 5px;
+}
+
+/* Compact mobile layout */
+
+@media (max-width: 360px) {
+
+    .alarm-app {
+        padding: 11px;
+        gap: 11px;
+    }
+
+    .clock-panel {
+        padding: 15px 10px;
+    }
+
+    .alarm-panel {
+        padding: 11px;
+    }
+
+    .time-input {
+        height: 49px;
+        font-size: 22px;
+    }
+
+}
