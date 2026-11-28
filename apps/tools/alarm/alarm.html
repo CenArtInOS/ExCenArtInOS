@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0d13">
+
+    <title>Alarm Clock - ExCenArtInOS</title>
+
+    <link rel="stylesheet" href="alarm.css">
+</head>
+
+<body>
+
+    <main class="alarm-app">
+
+        <!-- Application heading -->
+        <section class="top-section">
+            <div class="app-title">Alarm Clock</div>
+            <div class="app-subtitle">
+                Set an alarm and manage your reminders
+            </div>
+        </section>
+
+        <!-- Live clock -->
+        <section class="clock-panel">
+            <div class="current-time" id="currentTime">--:--:--</div>
+            <div class="current-date" id="currentDate">
+                Loading date...
+            </div>
+        </section>
+
+        <!-- Alarm setup -->
+        <section>
+            <div class="section-title">NEW ALARM</div>
+
+            <div class="alarm-panel">
+
+                <input
+                    type="time"
+                    id="alarmTime"
+                    class="time-input"
+                    aria-label="Choose alarm time"
+                >
+
+                <div class="button-row">
+                    <button class="primary-button" id="setButton">
+                        Set Alarm
+                    </button>
+
+                    <button class="secondary-button" id="clearButton">
+                        Clear
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Alarm status -->
+        <section>
+            <div class="section-title">ALARM STATUS</div>
+
+            <div class="status-panel" id="statusPanel">
+
+                <div class="status-icon" id="statusIcon">◷</div>
+
+                <div class="status-info">
+                    <div class="status-heading" id="statusHeading">
+                        No alarm set
+                    </div>
+
+                    <div class="status-detail" id="statusDetail">
+                        Choose a time above to create an alarm.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Ring controls -->
+        <section class="button-row hidden" id="ringControls">
+
+            <button class="snooze-button" id="snoozeButton">
+                Snooze 5 min
+            </button>
+
+            <button class="dismiss-button" id="dismissButton">
+                Dismiss
+            </button>
+
+        </section>
+
+        <!-- Information -->
+        <div class="note">
+            Keep this page open for the alarm to work. Browser background
+            restrictions and device sleep may delay alarms.
+        </div>
+
+    </main>
+
+    <script src="alarm.js"></script>
+
+</body>
+</html>
