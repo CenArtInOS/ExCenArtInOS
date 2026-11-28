@@ -1,0 +1,244 @@
+
+/* =========================================
+   BLOCK PUZZLE
+   Full-screen dark interface
+   12 x 24 playing board
+   Responsive mobile controls
+========================================= */
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #101010;
+    color: #eee;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: #101010;
+    overflow: hidden;
+}
+
+/* Top status bar */
+.topbar {
+    height: 38px;
+    min-height: 38px;
+    padding: 0 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #090909;
+    border-bottom: 1px solid #252525;
+}
+
+.topbar strong {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8px;
+    color: #999;
+}
+
+.stats b {
+    color: #eee;
+    font-size: 10px;
+    margin-left: 2px;
+}
+
+/* Larger playing area */
+.game-area {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3px;
+    padding: 3px;
+    overflow: hidden;
+}
+
+/* Wider board with more playable space */
+.board-wrap {
+    position: relative;
+    flex: 1;
+    width: auto;
+    height: 100%;
+    min-height: 0;
+    max-width: 100%;
+    aspect-ratio: auto;
+    background: #151515;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Next block panel */
+.next-panel {
+    width: 44px;
+    min-width: 44px;
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 5px 2px;
+    text-align: center;
+    background: #1a1a1a;
+    border: 1px solid #303030;
+    border-radius: 5px;
+}
+
+.next-panel span {
+    display: block;
+    font-size: 9px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+#nextCanvas {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
+/* Start, pause and game-over screens */
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.78);
+    z-index: 5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu {
+    width: 85%;
+    padding: 20px 12px;
+    text-align: center;
+    background: #1b1b1b;
+    border: 1px solid #393939;
+    border-radius: 8px;
+}
+
+.menu h2 {
+    margin: 0 0 10px;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+
+.menu p {
+    margin: 0 0 16px;
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.menu button {
+    min-height: 40px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    background: #ddd;
+    color: #111;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Bottom touch controls */
+.controls {
+    height: 70px;
+    min-height: 70px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    background: #090909;
+    border-top: 1px solid #292929;
+}
+
+.movement,
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.control {
+    width: 39px;
+    height: 42px;
+    border: 1px solid #414141;
+    border-radius: 7px;
+    background: #242424;
+    color: #eee;
+    font-size: 18px;
+    font-weight: bold;
+    touch-action: none;
+    user-select: none;
+}
+
+.control:active {
+    background: #555;
+}
+
+.control.drop {
+    width: 48px;
+    font-size: 10px;
+}
+
+.control.pause {
+    font-size: 16px;
+    background: #303030;
+}
+
+/* Short screens */
+@media (max-height: 520px) {
+    .topbar {
+        height: 32px;
+        min-height: 32px;
+    }
+
+    .controls {
+        height: 58px;
+        min-height: 58px;
+        padding: 4px 6px;
+    }
+
+    .control {
+        width: 35px;
+        height: 36px;
+    }
+
+    .control.drop {
+        width: 43px;
+    }
+
+    .game-area {
+        padding: 3px;
+    }
+}
