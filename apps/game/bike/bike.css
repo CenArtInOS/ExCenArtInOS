@@ -1,0 +1,181 @@
+
+/* =========================================
+   Motorcycle Off-Road
+   Minimal dark mobile interface
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eeeeee;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: #151515;
+}
+
+/* Top information bar */
+
+.topbar {
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 11px;
+    background: #101010;
+    border-bottom: 1px solid #292929;
+}
+
+.topbar strong {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.stats {
+    display: flex;
+    gap: 12px;
+    font-size: 10px;
+    color: #cccccc;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Game world */
+
+.world {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background: #303030;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Start and crash screens */
+
+.message {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu {
+    width: min(270px, 90%);
+    padding: 20px;
+    text-align: center;
+    background: rgba(20, 20, 20, 0.94);
+    border: 1px solid #494949;
+    border-radius: 9px;
+}
+
+.menu h2 {
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.menu p {
+    margin: 10px 0 15px;
+    color: #bbbbbb;
+    font-size: 12px;
+}
+
+.menu button {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    background: #e5e5e5;
+    color: #111111;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Driving controls */
+
+.controls {
+    height: 65px;
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: 0.8fr 1.1fr 1.1fr 0.8fr;
+    gap: 7px;
+    padding: 7px 9px;
+    background: #101010;
+    border-top: 1px solid #292929;
+}
+
+.control {
+    height: 49px;
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background: #282828;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    touch-action: none;
+}
+
+.tilt {
+    font-size: 21px;
+    background: #303030;
+}
+
+.brake {
+    background: #512a2a;
+    border-color: #754040;
+}
+
+.accelerate {
+    background: #27452e;
+    border-color: #426c4a;
+}
+
+.control:active {
+    filter: brightness(1.5);
+}
+
+@media (max-height: 480px) {
+    .topbar {
+        height: 32px;
+    }
+
+    .controls {
+        height: 54px;
+        padding: 4px 8px;
+    }
+
+    .control {
+        height: 44px;
+    }
+}
